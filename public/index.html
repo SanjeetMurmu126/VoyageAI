@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoyageAI — Easy Trip Planner</title>
+    <title>VoyageAI — Easy Travel Planner</title>
     <meta name="description" content="Create custom day-by-day travel itineraries in seconds.">
     <!-- Google Fonts: Space Grotesk & IBM Plex Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,9 +20,9 @@
         <header class="navbar">
             <div class="nav-left">
                 <div class="brand-logo">
-                    <i data-lucide="compass" class="brand-icon"></i>
+                    <i data-lucide="plane-takeoff" class="brand-icon"></i>
                     <span class="brand-name">Voyage<span class="brand-accent">AI</span></span>
-                    <span class="brand-tag">PLANNER</span>
+                    <span class="brand-tag">TRAVEL</span>
                 </div>
             </div>
             <div class="nav-right">
@@ -41,27 +41,27 @@
         <!-- Top Hero Planner Deck (Form Bar) -->
         <section class="planner-hero">
             <div class="hero-intro">
-                <h2>Where is your next adventure?</h2>
-                <p>Enter a destination and preferences to build a custom day-by-day travel plan.</p>
+                <h2>Where do you want to travel next?</h2>
+                <p>Pick a destination and preferences to build a custom day-by-day travel plan.</p>
             </div>
 
             <form id="itinerary-form" class="planner-form">
                 <div class="form-grid">
                     <!-- Where to -->
                     <div class="form-card">
-                        <label for="destination"><i data-lucide="map-pin"></i> WHERE ARE YOU GOING?</label>
-                        <input type="text" id="destination" name="destination" placeholder="e.g. Paris, Tokyo, Rome, Bali" required>
+                        <label for="destination"><i data-lucide="globe"></i> WHERE ARE YOU GOING?</label>
+                        <input type="text" id="destination" name="destination" placeholder="e.g. Tokyo, Paris, London, Sydney" required>
                     </div>
 
                     <!-- How many days -->
                     <div class="form-card">
-                        <label for="days"><i data-lucide="calendar"></i> HOW MANY DAYS?</label>
+                        <label for="days"><i data-lucide="clock"></i> HOW MANY DAYS?</label>
                         <input type="number" id="days" name="days" min="1" max="14" value="3" required>
                     </div>
 
                     <!-- Budget -->
                     <div class="form-card">
-                        <label for="budget"><i data-lucide="dollar-sign"></i> BUDGET LEVEL</label>
+                        <label for="budget"><i data-lucide="credit-card"></i> BUDGET</label>
                         <select id="budget" name="budget">
                             <option value="Budget">Budget-friendly</option>
                             <option value="Moderate" selected>Moderate</option>
@@ -71,18 +71,18 @@
 
                     <!-- Interests -->
                     <div class="form-card form-card-wide">
-                        <label for="interests"><i data-lucide="sparkles"></i> WHAT DO YOU LIKE TO DO?</label>
-                        <input type="text" id="interests" name="interests" placeholder="e.g. local food, art museums, historic sights, coffee shops">
+                        <label for="interests"><i data-lucide="heart"></i> WHAT DO YOU LIKE TO DO?</label>
+                        <input type="text" id="interests" name="interests" placeholder="e.g. street food, art galleries, cafes, historical sites">
                     </div>
                 </div>
 
                 <div class="form-actions-bar">
                     <button type="submit" id="submit-btn" class="btn btn-primary">
-                        <i data-lucide="send"></i>
-                        <span>Create Trip Plan</span>
+                        <i data-lucide="compass"></i>
+                        <span>Generate Trip Plan</span>
                     </button>
                     <button type="button" id="reset-btn" class="btn btn-secondary">
-                        <i data-lucide="rotate-ccw"></i>
+                        <i data-lucide="refresh-cw"></i>
                         <span>Reset</span>
                     </button>
                 </div>
@@ -96,9 +96,9 @@
                 <!-- Empty State -->
                 <div id="empty-state" class="empty-state">
                     <div class="empty-card">
-                        <i data-lucide="map" class="empty-icon"></i>
+                        <i data-lucide="compass" class="empty-icon"></i>
                         <h3>Your custom travel plan will appear here</h3>
-                        <p>Fill out the quick form above and click <strong>Create Trip Plan</strong> to generate your day-by-day itinerary.</p>
+                        <p>Fill out the quick form above and click <strong>Generate Trip Plan</strong> to create your day-by-day itinerary.</p>
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@
 
                 <!-- Error Container -->
                 <div id="error-container" class="error-container hidden">
-                    <i data-lucide="alert-circle" class="error-icon"></i>
+                    <i data-lucide="alert-triangle" class="error-icon"></i>
                     <div class="error-message">
                         <h4>Unable to generate itinerary</h4>
                         <p id="error-text">An error occurred. Please try again.</p>
@@ -117,7 +117,7 @@
                 <!-- Loader -->
                 <div id="loader" class="loader hidden">
                     <div class="spinner"></div>
-                    <span>Building your personalized itinerary...</span>
+                    <span>Creating your custom travel plan...</span>
                 </div>
             </section>
 
@@ -125,32 +125,32 @@
             <aside class="sidebar-column">
                 <!-- Postmark Stamp Element -->
                 <div id="postmark-stamp" class="stamp-card hidden">
-                    <div class="stamp-header">STAMPED & VERIFIED</div>
+                    <div class="stamp-header">VOYAGE AI VERIFIED</div>
                     <svg width="120" height="120" viewBox="0 0 110 110" class="stamp-svg">
-                        <circle cx="55" cy="55" r="48" fill="none" stroke="var(--brand-red)" stroke-width="2" />
-                        <circle cx="55" cy="55" r="42" fill="none" stroke="var(--brand-red)" stroke-width="1.5" stroke-dasharray="3,3" />
+                        <circle cx="55" cy="55" r="48" fill="none" stroke="var(--accent)" stroke-width="2" />
+                        <circle cx="55" cy="55" r="42" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="3,3" />
                         <path id="curve-top" d="M 18,55 A 37,37 0 0 1 92,55" fill="none" />
                         <path id="curve-bottom" d="M 92,55 A 37,37 0 0 1 18,55" fill="none" />
-                        <text fill="var(--brand-red)" font-family="var(--font-mono)" font-size="7" font-weight="bold" letter-spacing="1">
-                            <textPath href="#curve-top" startOffset="50%" text-anchor="middle" id="stamp-destination">PARIS</textPath>
+                        <text fill="var(--accent)" font-family="var(--font-mono)" font-size="7" font-weight="bold" letter-spacing="1">
+                            <textPath href="#curve-top" startOffset="50%" text-anchor="middle" id="stamp-destination">TOKYO</textPath>
                         </text>
-                        <text fill="var(--brand-red)" font-family="var(--font-mono)" font-size="7" font-weight="bold" letter-spacing="1.5">
-                            <textPath href="#curve-bottom" startOffset="50%" text-anchor="middle">APPROVED</textPath>
+                        <text fill="var(--accent)" font-family="var(--font-mono)" font-size="7" font-weight="bold" letter-spacing="1.5">
+                            <textPath href="#curve-bottom" startOffset="50%" text-anchor="middle">VOYAGE AI</textPath>
                         </text>
-                        <line x1="55" y1="42" x2="55" y2="68" stroke="var(--brand-red)" stroke-width="2" />
-                        <polygon points="55,38 52,44 58,44" fill="var(--brand-red)" />
-                        <polygon points="55,72 52,66 58,66" fill="var(--brand-red)" />
-                        <circle cx="55" cy="55" r="2" fill="var(--brand-red)" />
+                        <line x1="55" y1="42" x2="55" y2="68" stroke="var(--accent)" stroke-width="2" />
+                        <polygon points="55,38 52,44 58,44" fill="var(--accent)" />
+                        <polygon points="55,72 52,66 58,66" fill="var(--accent)" />
+                        <circle cx="55" cy="55" r="2" fill="var(--accent)" />
                     </svg>
                 </div>
 
                 <!-- Info Card -->
                 <div class="info-card">
-                    <h4><i data-lucide="lightbulb"></i> Travel Tips</h4>
+                    <h4><i data-lucide="shield-check"></i> Travel Advice</h4>
                     <ul>
-                        <li>Book popular attractions ahead of time to skip lines.</li>
-                        <li>Keep digital copies of your passport and key tickets.</li>
-                        <li>Check local public transport passes for easy savings.</li>
+                        <li>Check travel visa and passport requirements early.</li>
+                        <li>Keep essential local emergency contacts on your phone.</li>
+                        <li>Download offline translate & subway map apps.</li>
                     </ul>
                 </div>
             </aside>
@@ -158,7 +158,7 @@
 
         <!-- Footer -->
         <footer class="app-footer">
-            <p>&copy; 2026 VoyageAI Travel Planner. Made for easy trip planning.</p>
+            <p>&copy; 2026 VoyageAI. Simple & easy travel planning.</p>
         </footer>
     </div>
 

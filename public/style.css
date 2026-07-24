@@ -1,32 +1,32 @@
 /* ==========================================================================
-   VoyageAI — Scandinavian Emerald & Slate Dashboard Theme
+   VoyageAI — Midnight Obsidian & Electric Cyan Minimalist Theme
    Strictly NO Gradients | Strictly NO Glassmorphism/Blur
    ========================================================================== */
 
 :root {
     /* Solid Palette */
-    --bg-main: #0E1116;           /* Main App Canvas */
-    --bg-nav: #161A22;            /* Top Navbar Surface */
-    --bg-card: #1C212B;           /* Card & Module Surface */
-    --bg-card-hover: #232A37;     /* Hover Card Surface */
-    --bg-input: #0B0D11;          /* Input Field Surface */
+    --bg-main: #0A0D12;           /* Midnight Obsidian Canvas */
+    --bg-nav: #121721;            /* Top Navbar Surface */
+    --bg-card: #19202D;           /* Card Surface */
+    --bg-card-hover: #222B3D;     /* Hover Card Surface */
+    --bg-input: #06080C;          /* Input Surface */
     
     /* Solid Accents */
-    --accent: #10B981;            /* Emerald Green Accent */
-    --accent-hover: #34D399;      /* Bright Emerald */
-    --accent-dark: #059669;       /* Dark Emerald */
-    --brand-amber: #F59E0B;       /* Solid Amber */
-    --brand-red: #EF4444;         /* Solid Coral Red */
+    --accent: #06B6D4;            /* Electric Cyan Accent */
+    --accent-hover: #22D3EE;      /* Bright Cyan */
+    --accent-dark: #0891B2;       /* Dark Cyan */
+    --brand-blue: #3B82F6;        /* Neon Blue */
+    --brand-red: #EF4444;         /* Coral Red */
     
     /* Text / Ink */
-    --text-main: #F8FAFC;         /* Primary White Text */
+    --text-main: #F8FAFC;         /* White Slate Text */
     --text-muted: #94A3B8;        /* Secondary Slate Text */
-    --text-dim: #64748B;          /* Muted Label Text */
+    --text-dim: #64748B;          /* Subdued Text */
     
     /* Solid Borders */
-    --border: #29313D;            /* Structural Solid Border */
-    --border-highlight: #3B4556;  /* Focused/Active Border */
-    --border-accent: #10B981;     /* Accent Border */
+    --border: #222B3B;            /* Structural Border */
+    --border-highlight: #334155;  /* Highlight Border */
+    --border-accent: #06B6D4;     /* Accent Border */
     
     /* Typography */
     --font-heading: 'Space Grotesk', system-ui, sans-serif;
@@ -57,7 +57,7 @@ body {
     flex-direction: column;
 }
 
-/* Main Layout */
+/* Layout */
 .app-layout {
     max-width: 1280px;
     width: 100%;
@@ -69,7 +69,7 @@ body {
     flex: 1;
 }
 
-/* Top Navbar */
+/* Navigation */
 .navbar {
     background-color: var(--bg-nav);
     border: 2px solid var(--border);
@@ -161,7 +161,7 @@ body {
     height: 0.9rem;
 }
 
-/* Hero Planner Deck (Top Horizontal Form) */
+/* Hero Planner */
 .planner-hero {
     background-color: var(--bg-nav);
     border: 2px solid var(--border);
@@ -186,7 +186,6 @@ body {
     margin-top: 0.2rem;
 }
 
-/* Form Grid */
 .planner-form {
     display: flex;
     flex-direction: column;
@@ -299,7 +298,7 @@ body {
     border-color: var(--border-highlight);
 }
 
-/* Main Display Deck (Content & Sidebar) */
+/* Main Display Deck */
 .content-deck {
     display: grid;
     grid-template-columns: 1fr 300px;
@@ -307,7 +306,6 @@ body {
     flex: 1;
 }
 
-/* Left Main Column */
 .main-column {
     background-color: var(--bg-nav);
     border: 2px solid var(--border);
@@ -320,7 +318,6 @@ body {
     box-shadow: 4px 4px 0px #000000;
 }
 
-/* Empty State */
 .empty-state {
     flex: 1;
     display: flex;
@@ -357,7 +354,6 @@ body {
     line-height: 1.5;
 }
 
-/* Output Container */
 .itinerary-output {
     flex: 1;
     overflow-y: auto;
@@ -365,7 +361,6 @@ body {
     padding-right: 0.5rem;
 }
 
-/* Day Block Node Structure */
 .day-block {
     display: grid;
     grid-template-columns: 75px 1fr;
@@ -439,7 +434,6 @@ body {
     transform: rotate(-135deg);
 }
 
-/* Collapsible content */
 .collapsible-content {
     max-height: 2500px;
     overflow: hidden;
@@ -454,7 +448,6 @@ body {
     padding-top: 0;
 }
 
-/* Route Timeline */
 .route-list {
     position: relative;
     padding-left: 1.5rem;
@@ -489,7 +482,7 @@ body {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--brand-red);
+    background-color: var(--brand-blue);
     border: 2px solid var(--bg-nav);
 }
 
@@ -523,7 +516,6 @@ body {
     line-height: 1.5;
 }
 
-/* Checklists & Lists */
 .itinerary-output ul.checklist {
     list-style: none;
     margin-top: 0.5rem;
@@ -583,7 +575,6 @@ body {
     margin-bottom: 0.6rem;
 }
 
-/* Loader */
 .loader {
     display: flex;
     align-items: center;
@@ -609,26 +600,17 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* Error Container */
 .error-container {
     display: flex;
     gap: 0.75rem;
     margin-top: 1rem;
     padding: 1.25rem;
     background-color: #271212;
-    border: 2px solid var(--brand-red);
+    border: 2px solid var(--accent);
     border-radius: var(--radius-md);
     color: #FCA5A5;
 }
 
-.error-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--brand-red);
-    flex-shrink: 0;
-}
-
-/* Right Sidebar Column */
 .sidebar-column {
     display: flex;
     flex-direction: column;
@@ -651,7 +633,7 @@ body {
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 700;
-    color: var(--brand-red);
+    color: var(--accent);
     letter-spacing: 0.12em;
 }
 
@@ -678,7 +660,7 @@ body {
 .info-card h4 i {
     width: 1rem;
     height: 1rem;
-    color: var(--brand-amber);
+    color: var(--brand-blue);
 }
 
 .info-card ul {
@@ -700,10 +682,9 @@ body {
     content: '•';
     position: absolute;
     left: 0;
-    color: var(--brand-amber);
+    color: var(--brand-blue);
 }
 
-/* Footer */
 .app-footer {
     text-align: center;
     padding-top: 1.5rem;
@@ -713,12 +694,10 @@ body {
     color: var(--text-dim);
 }
 
-/* Helpers */
 .hidden {
     display: none !important;
 }
 
-/* Responsive */
 @media (max-width: 960px) {
     .form-grid {
         grid-template-columns: 1fr 1fr;
