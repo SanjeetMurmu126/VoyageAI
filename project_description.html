@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoyageAI — Project Specification</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --dark: #0f172a;
+            --text: #334155;
+            --border: #e2e8f0;
+            --bg-subtle: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 3rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* Header */
+        .doc-header {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .title-group h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.35rem;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.02em;
+        }
+
+        .title-group h1 span {
+            color: var(--primary);
+        }
+
+        .title-group p {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .doc-meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: #64748b;
+            text-align: right;
+        }
+
+        /* Live Badge Box */
+        .live-link-box {
+            background-color: #ecfdf5;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            padding: 1.1rem 1.35rem;
+            margin: 1.5rem 0 2rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .live-link-box a {
+            color: var(--primary-dark);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        /* Headings */
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            color: var(--dark);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 0.94rem;
+            color: #334155;
+            margin-bottom: 1rem;
+        }
+
+        /* Lists */
+        ul, ol {
+            padding-left: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        li {
+            font-size: 0.92rem;
+            color: #334155;
+            margin-bottom: 0.45rem;
+        }
+
+        li strong {
+            color: var(--dark);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.25rem 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 0.7rem 0.9rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--bg-subtle);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Code & Pre */
+        pre {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.83rem;
+            padding: 1.1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.25rem 0;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.86rem;
+            background-color: #f1f5f9;
+            color: var(--primary-dark);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Print Media */
+        @media print {
+            body {
+                padding: 0;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-header">
+        <div class="title-group">
+            <h1>Voyage<span>AI</span></h1>
+            <p>Intelligent Travel Itinerary Generator — Project Specification</p>
+        </div>
+        <div class="doc-meta">
+            <strong>VERSION 1.0</strong><br>
+            July 2026
+        </div>
+    </div>
+
+    <div class="live-link-box">
+        <strong>🌐 Live Web Application:</strong> <a href="https://voyageai-f4pd.onrender.com" target="_blank">https://voyageai-f4pd.onrender.com</a><br>
+        <strong>📦 GitHub Repository:</strong> <a href="https://github.com/SanjeetMurmu126/VoyageAI" target="_blank">https://github.com/SanjeetMurmu126/VoyageAI</a>
+    </div>
+
+    <h2>1. Executive Summary</h2>
+    <p><strong>VoyageAI</strong> is a full-stack, AI-powered travel planner built with <strong>Node.js, Express, and Google Gemini 2.5 Flash</strong>. It allows users to input any destination, trip duration, budget preference, and personal interests to generate comprehensive, day-by-day travel itineraries delivered via <strong>Server-Sent Events (SSE)</strong> real-time streaming.</p>
+
+    <h2>2. Key Highlights & Features</h2>
+    <ul>
+        <li><strong>Real-Time AI Streaming</strong>: Delivers instant markdown-formatted itinerary updates chunk-by-chunk using Server-Sent Events (SSE) without long loading delays.</li>
+        <li><strong>Precision Personalization</strong>: Tailors daily itineraries based on budget tier (Budget-friendly, Moderate, Luxury) and custom interest preferences (e.g. food, museums, shopping, nightlife).</li>
+        <li><strong>Interactive Day-by-Day Dashboard</strong>: Renders structured day blocks with morning/afternoon/evening schedules, interactive packing checkboxes, and local travel tips.</li>
+        <li><strong>One-Click Export & Printing</strong>: Integrated print/PDF engine formats custom itineraries into clean, styled documents.</li>
+        <li><strong>Modern Dashboard Design</strong>: Engineered with a Scandinavian Slate & Emerald minimalist aesthetic—strictly NO gradients and NO glassmorphism for maximum legibility and contrast.</li>
+    </ul>
+
+    <h2>3. Technical Stack & Architecture</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Layer</th>
+                <th>Technology</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Live Hosting</strong></td>
+                <td>Render Cloud Platform</td>
+                <td>Deployed live at <code>https://voyageai-f4pd.onrender.com</code></td>
+            </tr>
+            <tr>
+                <td><strong>Backend Engine</strong></td>
+                <td>Node.js / Express.js</td>
+                <td>Manages REST endpoints, static file serving, and SSE streaming pipeline</td>
+            </tr>
+            <tr>
+                <td><strong>Generative AI</strong></td>
+                <td>Google Gemini 2.5 Flash</td>
+                <td>High-speed generative AI model configured for structured streaming output</td>
+            </tr>
+            <tr>
+                <td><strong>Frontend UI</strong></td>
+                <td>HTML5 / Vanilla CSS / ES6+ JS</td>
+                <td>Dashboard interface built with Space Grotesk & IBM Plex fonts, and Lucide Icons</td>
+            </tr>
+            <tr>
+                <td><strong>Streaming Protocol</strong></td>
+                <td>Server-Sent Events (SSE)</td>
+                <td>HTTP streaming protocol for progressive chunk rendering in client browser</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. API Endpoint Reference</h2>
+    <h3>POST <code>/api/generate-itinerary</code></h3>
+    <p><strong>Request Payload (JSON):</strong></p>
+<pre><code>{
+  "destination": "Kyoto, Japan",
+  "days": 3,
+  "budget": "Moderate",
+  "interests": "historic temples, traditional tea houses, local ramen spots"
+}</code></pre>
+
+    <h2>5. Local Development & Deployment</h2>
+    <ol>
+        <li>Clone repository: <code>git clone https://github.com/SanjeetMurmu126/VoyageAI.git</code></li>
+        <li>Install dependencies: <code>npm install</code></li>
+        <li>Configure environment file <code>.env</code> with <code>GEMINI_API_KEY=YOUR_KEY</code></li>
+        <li>Start server: <code>npm start</code> (Open <code>http://localhost:3000</code> or visit <code>https://voyageai-f4pd.onrender.com</code>)</li>
+    </ol>
+
+    <h2>6. Metadata & Credits</h2>
+    <ul>
+        <li><strong>Project Name</strong>: VoyageAI</li>
+        <li><strong>Author / Owner</strong>: Sanjeet Murmu (<code>SanjeetMurmu126</code>)</li>
+        <li><strong>Live Application</strong>: <code>https://voyageai-f4pd.onrender.com</code></li>
+        <li><strong>Repository</strong>: <code>https://github.com/SanjeetMurmu126/VoyageAI</code></li>
+    </ul>
+
+    <div style="margin-top: 3rem; text-align: center; font-size: 0.8rem; color: #94a3b8;" class="no-print">
+        <p>Press <strong>Ctrl + P</strong> (Cmd + P on Mac) to save this document as PDF.</p>
+    </div>
+</body>
+</html>
