@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoyageAI — Easy Trip Planner</title>
+    <meta name="description" content="Create custom day-by-day travel itineraries in seconds.">
+    <!-- Google Fonts: Space Grotesk & IBM Plex Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Top Navigation -->
+        <header class="navbar">
+            <div class="nav-left">
+                <div class="brand-logo">
+                    <i data-lucide="compass" class="brand-icon"></i>
+                    <span class="brand-name">Voyage<span class="brand-accent">AI</span></span>
+                    <span class="brand-tag">PLANNER</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <span id="status-text" class="status-badge">Ready to plan your trip</span>
+                <button id="copy-btn" class="nav-action-btn" title="Copy Itinerary" disabled>
+                    <i data-lucide="copy"></i>
+                    <span>Copy</span>
+                </button>
+                <button id="print-btn" class="nav-action-btn" title="Print Itinerary" disabled>
+                    <i data-lucide="printer"></i>
+                    <span>Print</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Top Hero Planner Deck (Form Bar) -->
+        <section class="planner-hero">
+            <div class="hero-intro">
+                <h2>Where is your next adventure?</h2>
+                <p>Enter a destination and preferences to build a custom day-by-day travel plan.</p>
+            </div>
+
+            <form id="itinerary-form" class="planner-form">
+                <div class="form-grid">
+                    <!-- Where to -->
+                    <div class="form-card">
+                        <label for="destination"><i data-lucide="map-pin"></i> WHERE ARE YOU GOING?</label>
+                        <input type="text" id="destination" name="destination" placeholder="e.g. Paris, Tokyo, Rome, Bali" required>
+                    </div>
+
+                    <!-- How many days -->
+                    <div class="form-card">
+                        <label for="days"><i data-lucide="calendar"></i> HOW MANY DAYS?</label>
+                        <input type="number" id="days" name="days" min="1" max="14" value="3" required>
+                    </div>
+
+                    <!-- Budget -->
+                    <div class="form-card">
+                        <label for="budget"><i data-lucide="dollar-sign"></i> BUDGET LEVEL</label>
+                        <select id="budget" name="budget">
+                            <option value="Budget">Budget-friendly</option>
+                            <option value="Moderate" selected>Moderate</option>
+                            <option value="Luxury">Luxury / High-end</option>
+                        </select>
+                    </div>
+
+                    <!-- Interests -->
+                    <div class="form-card form-card-wide">
+                        <label for="interests"><i data-lucide="sparkles"></i> WHAT DO YOU LIKE TO DO?</label>
+                        <input type="text" id="interests" name="interests" placeholder="e.g. local food, art museums, historic sights, coffee shops">
+                    </div>
+                </div>
+
+                <div class="form-actions-bar">
+                    <button type="submit" id="submit-btn" class="btn btn-primary">
+                        <i data-lucide="send"></i>
+                        <span>Create Trip Plan</span>
+                    </button>
+                    <button type="button" id="reset-btn" class="btn btn-secondary">
+                        <i data-lucide="rotate-ccw"></i>
+                        <span>Reset</span>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Main Display Deck -->
+        <main class="content-deck">
+            <!-- Left Main Column: Itinerary Output -->
+            <section class="main-column">
+                <!-- Empty State -->
+                <div id="empty-state" class="empty-state">
+                    <div class="empty-card">
+                        <i data-lucide="map" class="empty-icon"></i>
+                        <h3>Your custom travel plan will appear here</h3>
+                        <p>Fill out the quick form above and click <strong>Create Trip Plan</strong> to generate your day-by-day itinerary.</p>
+                    </div>
+                </div>
+
+                <!-- Stream Output Container -->
+                <div id="itinerary-output" class="itinerary-output hidden"></div>
+
+                <!-- Error Container -->
+                <div id="error-container" class="error-container hidden">
+                    <i data-lucide="alert-circle" class="error-icon"></i>
+                    <div class="error-message">
+                        <h4>Unable to generate itinerary</h4>
+                        <p id="error-text">An error occurred. Please try again.</p>
+                    </div>
+                </div>
+
+                <!-- Loader -->
+                <div id="loader" class="loader hidden">
+                    <div class="spinner"></div>
+                    <span>Building your personalized itinerary...</span>
+                </div>
+            </section>
+
+            <!-- Right Sidebar / Stamp & Summary Deck -->
+            <aside class="sidebar-column">
+                <!-- Postmark Stamp Element -->
+                <div id="postmark-stamp" class="stamp-card hidden">
+                    <div class="stamp-header">STAMPED & VERIFIED</div>
+                    <svg width="120" height="120" viewBox="0 0 110 110" class="stamp-svg">
+                        <circle cx="55" cy="55" r="48" fill="none" stroke="var(--brand-red)" stroke-width="2" />
+                        <circle cx="55" cy="55" r="42" fill="none" stroke="var(--brand-red)" stroke-width="1.5" stroke-dasharray="3,3" />
+                        <path id="curve-top" d="M 18,55 A 37,37 0 0 1 92,55" fill="none" />
+                        <path id="curve-bottom" d="M 92,55 A 37,37 0 0 1 18,55" fill="none" />
+                        <text fill="var(--brand-red)" font-family="var(--font-mono)" font-size="7" font-weight="bold" letter-spacing="1">
+                            <textPath href="#curve-top" startOffset="50%" text-anchor="middle" id="stamp-destination">PARIS</textPath>
+                        </text>
+                        <text fill="var(--brand-red)" font-family="var(--font-mono)" font-size="7" font-weight="bold" letter-spacing="1.5">
+                            <textPath href="#curve-bottom" startOffset="50%" text-anchor="middle">APPROVED</textPath>
+                        </text>
+                        <line x1="55" y1="42" x2="55" y2="68" stroke="var(--brand-red)" stroke-width="2" />
+                        <polygon points="55,38 52,44 58,44" fill="var(--brand-red)" />
+                        <polygon points="55,72 52,66 58,66" fill="var(--brand-red)" />
+                        <circle cx="55" cy="55" r="2" fill="var(--brand-red)" />
+                    </svg>
+                </div>
+
+                <!-- Info Card -->
+                <div class="info-card">
+                    <h4><i data-lucide="lightbulb"></i> Travel Tips</h4>
+                    <ul>
+                        <li>Book popular attractions ahead of time to skip lines.</li>
+                        <li>Keep digital copies of your passport and key tickets.</li>
+                        <li>Check local public transport passes for easy savings.</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 VoyageAI Travel Planner. Made for easy trip planning.</p>
+        </footer>
+    </div>
+
+    <!-- App Script -->
+    <script src="app.js"></script>
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
